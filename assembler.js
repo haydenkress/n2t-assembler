@@ -15,7 +15,7 @@ if (!inputFilePath || !outputFilePath) {
 }
 
 const symbolTable = {
-    "RO": 0,
+    "R0": 0,
     "R1": 1,
     "R2": 2,
     "R3": 3,
@@ -82,7 +82,7 @@ const processAssemblyFile = (inputPath, outputPath) => {
             const address = parseInt(line.slice(1));
             return `0${address.toString(2).padStart(15, '0')}`;
         };
-        
+
         // M=M+1;JMP
         const translateCInstruction = (line) => {
             const compTable = {
@@ -120,7 +120,6 @@ const processAssemblyFile = (inputPath, outputPath) => {
         // Write the processed lines to the output file
         fs.writeFileSync(outputPath, binaryLines.join('\n'), 'utf-8');
         console.log(`Processed content written to ${outputPath}`);
-        console.log(symbolTable);
     } catch (err) {
         console.error(`Error processing file: ${err.message}`);
     };
